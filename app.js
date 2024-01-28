@@ -17,7 +17,7 @@ const static_path = path.join(__dirname, "/public");
 app.use(express.static(static_path));
 
 app.get("/", (req, res) => {
-  res.render(static_path + "/index.html");
+  res.sendFile(static_path + "/index.html");
 });
 
 const PORT = process.env.PNUM || 5000;
