@@ -3,6 +3,7 @@ const app = express();
 const mongoose = require("mongoose");
 const AppRouter = require("./routes/AppRoutes.js");
 const path = require("path");
+require("dotenv").config({ path: path.resolve(__dirname, ".env") });
 const cors = require("cors");
 app.use(cors());
 app.options("*", cors());
@@ -19,8 +20,8 @@ app.get("/", (req, res) => {
   res.render(static_path + "/index.html");
 });
 
-const PORT = 5000;
-const MONGO_DB_URI = "mongodb://127.0.0.1:27017/courseReg";
+const PORT = process.env.PNUM || 5000;
+const MONGO_DB_URI = process.env.MONGO_URL;
 mongoose
   .connect(MONGO_DB_URI)
   .then(() => {
